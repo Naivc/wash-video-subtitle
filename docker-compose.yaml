@@ -6,11 +6,10 @@ services:
     restart: unless-stopped
     entrypoint: /bin/bash /script/move_sync.sh
     environment:
-      - PUID=1000
-      - PGID=10
-      - TZ=Europe/Madrid
-      - KEEP_DAYS=7  # 设置保留天数，例如 7 天
+      - PUID=0 #根据情况自行修改
+      - PGID=0 #根据情况自行修改
+      - TZ=Asia/Shanghai
     volumes:
-      - /volume2/media/整理目录:/source
-      - /volume2/media/上传目录:/dest
+      - /volume2/media/整理目录:/source #监控目录。请自行修改
+      - /volume2/media/上传目录:/dest #目标目录。请自行修改
       - ./move_sync.sh:/script/move_sync.sh
