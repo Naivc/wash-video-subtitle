@@ -1,0 +1,16 @@
+version: "3"
+services:
+  move-worker:
+    image: linuxserver/ffmpeg:latest
+    container_name: sub_move_worker
+    restart: unless-stopped
+    entrypoint: /bin/bash /script/move_sync.sh
+    environment:
+      - PUID=1000
+      - PGID=10
+      - TZ=Europe/Madrid
+      - KEEP_DAYS=7  # 设置保留天数，例如 7 天
+    volumes:
+      - /volume2/media/整理目录:/source
+      - /volume2/media/上传目录:/dest
+      - ./move_sync.sh:/script/move_sync.sh
