@@ -64,7 +64,8 @@ INTERVAL=60
   * 第二条西语字幕 -> `Filename.1.spa.srt`
 ### 🚀 部署与运行
 * Linux 环境
-* Docker compose
+* 下载docker-compose.yaml和move_sync.sh并放置于同一个文件夹
+* Docker compose 根据需求修改
 ```text
 version: "3"
 services:
@@ -84,9 +85,7 @@ services:
 ```
 ### ⚠️ 注意事项
 * **历史记录文件**： 脚本会在 /source/.processed_history.log 生成一个隐藏文件，用于记录哪些视频已经处理过。
-
 不要随意删除，否则脚本会重新扫描处理所有视频。
-
 如果你想强制重新处理某个视频，请手动编辑该文件，删除对应的路径行。
 
 * **硬链接限制**： 脚本对无字幕视频使用硬链接优化。硬链接要求 SOURCE_DIR 和 DEST_DIR 必须位于同一个磁盘分区/挂载点。如果跨硬盘，脚本会自动回退到普通复制模式（速度较慢）。
